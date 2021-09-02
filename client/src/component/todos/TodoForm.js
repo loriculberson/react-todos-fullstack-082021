@@ -1,13 +1,6 @@
-import { useState, useEffect } from 'react'
-
-export default function TodoForm() {
-  const [ todo, setTodo ] = useState({ title: "", completed: false })
-
-  function handleInput(title){
-    setTodo({ ...todo, title })
-  }
-
-  useEffect(() => console.log(todo))
+export default function TodoForm(props) {
+  const { todo, handleInput, handleSubmit } = props
+  
   return (
     <form>
       <input
