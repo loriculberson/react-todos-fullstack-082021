@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import TodoForm from './TodoForm'
+import axios from 'axios'
 
 export default function TodoApp(){
   /*
@@ -27,8 +28,21 @@ export default function TodoApp(){
     setTodo({ title: "", completed: false })
   }
 
+  async function fetchTodos(){
+    try {
+      const response = await axios('/api/todos')
+      setAllTodos(response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => console.log(todo))
   useEffect(() => console.log(allTodos))
+  useEffect(() => {
+    fetchTodos()
+  }, [])
+
   return (
     <>
       <TodoForm 
